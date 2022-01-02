@@ -6,12 +6,11 @@ angular
 function {{component-name}}Directive() {
     return {
         restrict: 'E',
-        controller: adminLogController,
+        controller: {{component-name}}Controller,
         transclude: false,
         template: '{{component-template}}',
         link: {{component-name}}Link,
         scope: {
-            //saVar: '=',
         }
     };
 
