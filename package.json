@@ -1,0 +1,32 @@
+{
+  "name": "angularjs-cli",
+  "version": "1.0.0",
+  "description": "A command line interface for creating AngularJS modules and components that are defined in a manner similar to Angular",
+  "type":"module",
+  "bin": {
+    "ngjs": "bin/index.js"
+  },
+  "files": [
+    "bin/",
+    "commands/",
+    "templates/"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smacinn/angularjs-cli.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smacinn/angularjs-cli/issues"
+  },
+  "homepage": "https://github.com/smacinn/angularjs-cli#readme",
+  "dependencies": {
+    "commander": "^8.3.0",
+    "fs": "0.0.1-security"
+  }
+}

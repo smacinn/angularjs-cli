@@ -1,0 +1,25 @@
+angular
+    .module('{{module-name}}.components.{{component-name}}', ['ng'])
+    .directive('{{directive-name}}', {{component-name}}Directive);
+
+{{component-name}}Directive.$inject = [];
+function {{component-name}}Directive() {
+    return {
+        restrict: 'E',
+        controller: adminLogController,
+        transclude: false,
+        template: '{{component-template}}',
+        link: {{component-name}}Link,
+        scope: {
+            //saVar: '=',
+        }
+    };
+
+	function {{component-name}}Link(scope, element, attr) {
+	}
+}
+
+{{component-name}}Controller.$inject = ['$scope'];
+function {{component-name}}Controller($scope) {
+
+}
