@@ -1,24 +1,24 @@
 angular
-    .module('{{module-name}}.components.{{component-name}}', ['ng'])
-    .directive('{{directive-name}}', {{component-name}}Directive);
+    .module('{{module}}.components.{{component}}', ['ng'])
+    .directive('{{tagname}}', {{component}}Directive);
 
-{{component-name}}Directive.$inject = [];
-function {{component-name}}Directive() {
+{{component}}Directive.$inject = [];
+function {{component}}Directive() {
     return {
         restrict: 'E',
-        controller: {{component-name}}Controller,
+        controller: {{component}}Controller,
         transclude: false,
-        template: '{{component-template}}',
-        link: {{component-name}}Link,
+        template: '{{html}}',
+        link: {{component}}Link,
         scope: {
         }
     };
 
-	function {{component-name}}Link(scope, element, attr) {
+	function {{component}}Link(scope, element, attr) {
 	}
 }
 
-{{component-name}}Controller.$inject = ['$scope'];
-function {{component-name}}Controller($scope) {
+{{component}}Controller.$inject = ['$scope'];
+function {{component}}Controller($scope) {
 
 }

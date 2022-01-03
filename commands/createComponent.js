@@ -1,29 +1,55 @@
 import fs from 'fs';
+import path from 'path';
+import util from '../lib/util.js';
 
 export default (name, options) => {
     if(name != null && name != ''){
-        if (!fs.existsSync(name)){
-            fs.mkdirSync(name);
-        }
+        const settings = util.getSettings();
+        var dirname = path.join(settings.componentsDir, name);
+        var replacements = {};
 
-        var scss = name + '/_module.scss';
-        var components = name + '/components';
-        var services = name + '/services';
+        if (!fs.existsSync(dirname)){
+            fs.mkdirSync(dirname);
+            replacements['module'] = settings.name;
+            replacements['component'] = name;
+            var contents = '';
 
-        if (!fs.existsSync(scss)){
-            fs.writeFile(scss, '', function (err) {
-                if (err) throw err;
-                console.log('File is created successfully.');
-              });
+            if(settings.useAbbreviation){
+                replacements['tagname'] = util.kebabIt(util.camelIt(settings.abbreviation) + util.pascalIt(name));
+            }
+            else{
+                replacements['tagname'] = util.kebabIt(name);
+            }
+            
+            // write out the controller file
+            var filename = path.join(dirname, name + '.js');
+            if (!fs.existsSync(filename)){
+                contents = util.processComponentJsTemplate(replacements);
+                fs.writeFile(filename, contents, function (err) {
+                    if (err) throw err;
+                    console.log('Component controller has been created successfully.');
+                });
+            }
+            
+            // write out the html file
+            filename = path.join(dirname, name + '.html');
+            if (!fs.existsSync(filename)){
+                contents = util.processComponentHtmlTemplate(replacements);
+                fs.writeFile(filename, contents, function (err) {
+                    if (err) throw err;
+                    console.log('Component html template has been created successfully.');
+                });
+            }
+            
+            // write out the scss file
+            filename = path.join(dirname, name + '.scss');
+            if (!fs.existsSync(filename)){
+                contents = util.processComponentScssTemplate(replacements);
+                fs.writeFile(filename, contents, function (err) {
+                    if (err) throw err;
+                    console.log('Component controller has been created successfully.');
+                });
+            }
         }
-        if (!fs.existsSync(components)){
-            fs.mkdirSync(components);
-        }
-        if (!fs.existsSync(services)){
-            fs.mkdirSync(services);
-        }
-    }
-    else{
-        // TODO throw or display an error
     }
 }

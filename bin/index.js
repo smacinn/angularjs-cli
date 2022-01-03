@@ -2,8 +2,9 @@
 
 
 import cli from "commander";
-import createModule from "../commands/createComponent.js"
+import createModule from "../commands/createModule.js"
 import createComponent from "../commands/createComponent.js";
+import createService from "../commands/createService.js";
 import list from "../commands/list.js";
 
 
@@ -24,6 +25,8 @@ cli.command("list")
 
   /* New Module command */
   cli.command("module")
+  .option("-a, --abbreviation <abbreviation>", "Abbreviation for module.")
+  .option("-c, --component <name>", "create component")
   .argument("[name]", "name of the new AngularJS module.")
   .description(
     "Create a new AngularJS module folder."
@@ -37,6 +40,14 @@ cli.command("list")
     "Create a new AngularJS component folder and files."
   )
   .action(createComponent);
+
+  /* New Service command */
+  cli.command("service")
+  .argument("[name]", "name of the new AngularJS service/directive.")
+  .description(
+    "Create a new AngularJS service / directive file."
+  )
+  .action(createService);
 
 
 cli.parse(process.argv);

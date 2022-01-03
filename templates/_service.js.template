@@ -1,0 +1,17 @@
+angular
+    .module('{{module}}.services.{{service}}', ['ng'])
+    .factory('{{serviceName}}', ServiceEntry);
+
+ServiceEntry.$inject = [];
+function ServiceEntry() {
+
+    function DoSomething() {
+    }
+
+    var service = {
+        'DoSomething': DoSomething
+    };
+
+    return service;
+}
+
