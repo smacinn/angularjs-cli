@@ -3,11 +3,6 @@ import path from 'path';
 
 
 export default (name, options) => {
-    console.log("Options:", options);
-    console.log("Exec Path:", process.execPath);
-    console.log("Exec Args:", process.execArgv);
-    console.log("Dirname:", path.dirname('.'));
-
     if(name != null && name != ''){
         if (!fs.existsSync(name)){
             fs.mkdirSync(name);
@@ -17,6 +12,7 @@ export default (name, options) => {
         var scss = name + '/_module.scss';
         var components = name + '/components';
         var services = name + '/services';
+        var pages = name + '/pages';
         var settingsFile = name + '/settings.json';
 
  
@@ -53,6 +49,9 @@ export default (name, options) => {
         }
         if (!fs.existsSync(services)){
             fs.mkdirSync(services);
+        }
+        if (!fs.existsSync(pages)){
+            fs.mkdirSync(pages);
         }
    }
     else{

@@ -1,5 +1,5 @@
 angular
-    .module('{{module}}.component.{{component}}', ['ng'])
+    .module('{{module}}.page.{{component}}', ['ng'])
     .directive('{{tagname}}', {{component}}Directive);
 
 {{component}}Directive.$inject = [];
