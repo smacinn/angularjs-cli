@@ -1,6 +1,6 @@
 angular
     .module('{{module}}.component.{{component}}', ['ng'])
-    .directive('{{tagname}}', {{component}}Directive);
+    .directive('{{directive}}', {{component}}Directive);
 
 {{component}}Directive.$inject = [];
 function {{component}}Directive() {

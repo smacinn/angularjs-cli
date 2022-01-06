@@ -20,6 +20,14 @@ export default (name, options) => {
             else{
                 replacements['tagname'] = util.kebabIt(name);
             }
+
+            if(settings.useAbbreviation){
+                replacements['directive'] = util.camelIt(settings.abbreviation) + util.pascalIt(name);
+            }
+            else{
+                replacements['directive'] = util.camelIt(name);
+            }
+
             
             // write out the controller file
             var filename = path.join(dirname, name + '.js');
@@ -50,6 +58,9 @@ export default (name, options) => {
                     console.log('Component scss file has been created successfully.');
                 });
             }
+
+            // Append the scss file to _modules.scss with an import
+            fs.appendFileSync(path.join(settings.moduleDir, '_module.scss'), "@import 'components/" +  name + "/" + name + '.scss' + "';\n");
         }
     }
 }

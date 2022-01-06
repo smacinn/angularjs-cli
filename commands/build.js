@@ -16,11 +16,13 @@ export default (folder, options) => {
 
             modules.forEach(element => {
                 rollup.processModule(path.join(folder,element), options);
+                rollup.processSass(path.join(folder,element), options);
               });
         }
         else{
             // folder is expected to be a module
             rollup.processModule(folder, options);
+            rollup.processSass(folder, options);
         }
     }
     else{

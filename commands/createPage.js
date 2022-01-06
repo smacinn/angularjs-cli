@@ -15,10 +15,17 @@ export default (name, options) => {
             var contents = '';
 
             if(settings.useAbbreviation){
-                replacements['tagname'] = util.kebabIt(util.camelIt(settings.abbreviation) + 'Page' + util.pascalIt(name));
+                replacements['tagname'] = util.kebabIt(util.camelIt(settings.abbreviation) + util.pascalIt(name));
             }
             else{
-                replacements['tagname'] = 'Page' + util.kebabIt(name);
+                replacements['tagname'] = util.kebabIt(name);
+            }
+
+            if(settings.useAbbreviation){
+                replacements['directive'] = util.camelIt(settings.abbreviation) + util.pascalIt(name);
+            }
+            else{
+                replacements['directive'] = util.camelIt(name);
             }
             
             // write out the controller file
@@ -50,6 +57,9 @@ export default (name, options) => {
                     console.log('Page scss file has been created successfully.');
                 });
             }
+
+            // Append the scss file to _modules.scss with an import
+            fs.appendFileSync(path.join(settings.moduleDir, '_module.scss'), "@import 'pages/" +  name + "/" + name + '.scss' + "';\n");
         }
     }
 }
